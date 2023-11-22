@@ -11,6 +11,7 @@ class MainApp(wx.App):
     def OnInit(self):
         self.frame = MainFrame(None, title='RenameFiles')
         self.frame.Show()
+        self.frame.update()
         self.frame.add_filenames(sys.argv[1:])
         #self.frame.add_test()
         if len(self.frame.items):
@@ -47,6 +48,10 @@ class MainFrame(wx.Frame):
         button_sizer.Add(self.rename_btn, flag=wx.TOP|wx.RIGHT|wx.BOTTOM, border=4)
         button_sizer.Add(self.close_btn, flag=wx.TOP|wx.RIGHT|wx.BOTTOM, border=4)
         sizer.Add(button_panel, flag=wx.EXPAND|wx.RIGHT|wx.BOTTOM, border=6)
+
+    def update(self):
+        self.Refresh()
+        self.Update()   # force update
 
     def add_filenames(self, filenames):
         for i in filenames:
